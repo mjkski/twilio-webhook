@@ -1,0 +1,25 @@
+from flask import Flask, request
+from twilio.twiml.messaging_response import MessagingResponse
+import os
+
+app = Flask(__name__)
+
+@app.route("/sms", methods=["POST"])
+def sms_reply():
+    """Respond to incoming SMS with a simple message."""
+    body = request.form.get("Body", "").strip().upper()
+
+    resp = MessagingResponse()
+
+    if body == "NEXT":
+        resp.message("Your next load: 4200 gal diesel / 3600 gal gas. Drop at Stroud Construction.")
+    elif body.startswith("ISSUE"):
+        resp.message("Issue logged. Dispatch will review.")
+    else:
+        resp.message("Command not recognized. Reply NEXT or ISSUE.")
+
+    return str(resp)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
