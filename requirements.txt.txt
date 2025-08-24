@@ -1,3 +1,3 @@
-Flask
-twilio
-gunicorn
+echo Flask
+echo twilio
+echo gunicorn
