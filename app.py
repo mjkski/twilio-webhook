@@ -23,3 +23,9 @@ def sms_reply():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+DRIVERS = {
+    "+14802318695": {"driver_id": "mike",   "current_load": "28137"},
+    "+16305559876": {"driver_id": "phil",   "current_load": "28137"},
+    "+16305553456": {"driver_id": "bryan",  "current_load": "28161"},
+    "+16305557654": {"driver_id": "isaac",  "current_load": None},  # no active load yet
+}
